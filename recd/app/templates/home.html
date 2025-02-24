@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Course List</title>
 </head>
 <body>
-    
-    <p>{{name}}</p>
-    <h1>{{last_name}} THEN MEUST BE YOUR SENCAD NAME  </h1>
+    <p>{{ name }}</p>
+    <h1>{{ last_name }} THEN MUST BE YOUR SECOND NAME</h1>
+
+    <br>
+
+    {% for item in courses %}  <!-- Changed from 'course' to 'courses' -->
+        <p>{{ item.course_title }}</p>
+    {% empty %}
+        <p>No courses available.</p>
+    {% endfor %}
 </body>
 </html>
