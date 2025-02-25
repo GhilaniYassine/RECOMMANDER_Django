@@ -1,0 +1,191 @@
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<div class="upload-section">
+    <div class="upload-container">
+        <h2 class="upload-title">📚 Create Your Quiz! 📚</h2>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            
+            <div class="upload-area">
+                <div class="file-input-wrapper">
+                    <input type="file" name="pdf" accept=".pdf" required id="pdf-upload" class="hidden-input">
+                    <label for="pdf-upload" class="file-label">
+                        <div class="upload-content">
+                            <div class="upload-icon">📄</div>
+                            <p class="upload-text">Drag & Drop PDF Here<br>or<br>Click to Browse</p>
+                        </div>
+                    </label>
+                </div>
+                <div class="selected-file" id="file-name"></div>
+            </div>
+
+            <button type="submit" class="generate-btn">
+                <span>Generate Quiz</span>
+                <div class="sparkles">✨✨</div>
+            </button>
+        </form>
+    </div>
+    
+    <div class="floating-pdf">📑</div>
+    <div class="floating-pdf">📘</div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffd9e6 0%, #a6e3ff 100%);
+        min-height: 100vh;
+        font-family: 'Comic Neue', cursive;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .upload-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        transform: rotateZ(-1deg);
+        animation: floatUp 0.8s ease-out;
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(20px) rotateZ(-1deg); opacity: 0; }
+        to { transform: translateY(0) rotateZ(-1deg); opacity: 1; }
+    }
+
+    .upload-title {
+        color: #4a4a4a;
+        font-size: 2.5rem;
+        text-align: center;
+        margin: 0 0 2rem 0;
+        text-shadow: 2px 2px 0 #fff;
+    }
+
+    .upload-area {
+        border: 3px dashed #a6e3ff;
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 1.5rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .upload-area:hover {
+        border-color: #ff9eb5;
+        transform: scale(1.02);
+    }
+
+    .file-input-wrapper {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .hidden-input {
+        opacity: 0;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+    }
+
+    .upload-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .upload-icon {
+        font-size: 4rem;
+        animation: bounce 2s infinite;
+    }
+
+    .upload-text {
+        color: #666;
+        font-size: 1.2rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    .selected-file {
+        text-align: center;
+        margin-top: 1rem;
+        color: #4a4a4a;
+        font-weight: bold;
+    }
+
+    .generate-btn {
+        background: linear-gradient(45deg, #ff6b6b, #ff9eb5);
+        color: white;
+        border: none;
+        padding: 1.2rem 2.5rem;
+        border-radius: 12px;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    .generate-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+    }
+
+    .sparkles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .generate-btn:hover .sparkles {
+        opacity: 1;
+        animation: sparkle 0.8s linear infinite;
+    }
+
+    .floating-pdf {
+        position: fixed;
+        font-size: 3rem;
+        opacity: 0.1;
+        animation: float 4s infinite ease-in-out;
+    }
+
+    .floating-pdf:nth-child(1) { left: 10%; top: 20%; }
+    .floating-pdf:nth-child(2) { right: 10%; bottom: 30%; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes sparkle {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+</style>
+
+<script>
+    document.getElementById('pdf-upload').addEventListener('change', function(e) {
+        const fileName = document.getElementById('file-name');
+        const name = e.target.files[0].name;
+        fileName.textContent = `Selected: ${name}`;
+        fileName.style.color = '#4a4a4a';
+        fileName.style.animation = 'none';
+        void fileName.offsetWidth; // Trigger reflow
+        fileName.style.animation = 'fadeIn 0.5s ease';
+    });
+</script>
+{% endblock %}
