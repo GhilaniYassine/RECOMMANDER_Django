@@ -1,0 +1,97 @@
+
+{% block content %}
+<div class="quiz-container">
+    {% if quiz.questions %}
+        <h2>Quiz Question</h2>
+        <form method="post" id="quiz-form">
+            {% csrf_token %}
+            <div class="question-box">
+                <!-- Debug output
+                   {% if debug %}
+                    <pre>{{ quiz|pprint }}</pre>
+                {% endif %}
+                 -->
+              
+                <!-- Display question -->
+                <p class="question">{{ quiz.questions.0.question }}</p>
+                
+                <div class="options">
+                    {% for option in quiz.questions.0.options %}
+                        <label class="option">
+                            <input type="radio" name="answer" value="option{{ forloop.counter }}" required>
+                            <span>{{ option }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Answer</button>
+        </form>
+    {% else %}
+        <p>No questions available. Please try uploading a PDF again.</p>
+        <a href="{% url 'upload_pdf' %}" class="btn">Upload PDF</a>
+    {% endif %}
+</div>
+
+<style>
+    .quiz-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .question-box {
+        margin-bottom: 2rem;
+    }
+
+    .question {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .option {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .option:hover {
+        background: #f5f5f5;
+        border-color: #007bff;
+    }
+
+    .option input[type="radio"] {
+        margin-right: 1rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background: #0056b3;
+    }
+</style>
+{% endblock %}
