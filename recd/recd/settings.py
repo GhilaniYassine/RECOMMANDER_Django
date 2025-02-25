@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-GEMINI_API_KEY = "AIzaSyDTtPkeyyTu9Hem6icYwsKFN26u-Wbptbs"
+GEMINI_API_KEY = ""
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
