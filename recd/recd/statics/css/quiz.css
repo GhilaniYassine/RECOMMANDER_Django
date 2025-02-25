@@ -1,0 +1,16 @@
+.question-card {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.correct-answer { color: #2ecc71; font-weight: bold; }
+.incorrect-answer { color: #e74c3c; font-weight: bold; }
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
