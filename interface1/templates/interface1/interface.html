@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+section {
+    background-color: white;
+    padding: 2em;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+.tool-card {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Website</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/interface1.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tools">AI Tools</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Welcome to AI Tools</h1>
+            <p>Explore our collection of AI-powered tools designed to make your life easier.</p>
+            <button>Discover Now</button>
+        </section>
+
+        <section id="tools">
+            <h2>AI Tools</h2>
+            <div class="tool-card">
+                <h3>Tool 1: Text Summarizer</h3>
+                <p>Summarize long texts into concise summaries.</p>
+                <button>Use Now</button>
+            </div>
+            <div class="tool-card">
+                <h3>Tool 2: Image Generator</h3>
+                <p>Generate images based on your text prompts.</p>
+                <button>Use Now</button>
+            </div>
+            <div class="tool-card">
+                <h3>Tool 3: Chatbot</h3>
+                <p>Engage with our AI chatbot for assistance.</p>
+                <button>Use Now</button>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a team dedicated to developing innovative AI solutions.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 AI Tools Website</p>
+    </footer>
+
+    <script src="{% static 'js/interface.js' %}"></script>
+</body>
+</html>
